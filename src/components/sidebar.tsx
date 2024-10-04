@@ -59,7 +59,6 @@ const SideBar = (props: any) => {
                 TELEGRAM_TOKEN: telegramData.telegramToken,
                 TELEGRAM_CHAT_ID: telegramData.telegramChatId
             }
-
             await api.post("/save_settings", newData)
             showToast("success", "Successfully Saved!")
         } catch (err) {

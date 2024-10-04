@@ -65,12 +65,13 @@ export const UtilContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
     const [delay, setDelay] = useState<number[]>([])
 
     const GetDiscordData = (result: any) => {
+        console.log(result.discords)
         setdiscordAccount({
             et: result.discords[0].channel_id,
             dt: result.discords[1].channel_id,
             mm: result.discords[2].channel_id,
-            sre_qt: result.discords[3].channel_id,
             sre_pa: result.discords[3].channel_id,
+            sre_qt: result.discords[4].channel_id,
         })
     }
 
