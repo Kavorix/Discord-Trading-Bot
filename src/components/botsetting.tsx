@@ -162,9 +162,9 @@ const BuySettings = () => {
                     value={eachThres}
                     onChange={(e: any) => {
                         let _threshold = threshold
-                        _threshold[sideBarNumber - 3] = e.target.value
+                        _threshold[sideBarNumber - 3] = Number(e.target.value)
                         setThreshold(_threshold)
-                        setEachThres(e.target.value)
+                        setEachThres(Number(e.target.value))
                     }}
                 />
             </div>
@@ -177,9 +177,9 @@ const BuySettings = () => {
                     value={eachDelay}
                     onChange={(e: any) => {
                         let _delay = delay
-                        _delay[sideBarNumber - 3] = e.target.value
+                        _delay[sideBarNumber - 3] = Number(e.target.value)
                         setDelay(_delay)
-                        setEachDelay(e.target.value)
+                        setEachDelay(Number(e.target.value))
                     }}
                 />
             </div>
@@ -220,7 +220,7 @@ const BotSetting = () => {
                 {
                     btnName.map((itx: any, idx: any) => (
                         <button
-                            className="w-[150px] h-[40px] bg-[#2a64a3] rounded-md"
+                            className="w-[150px] h-[40px] bg-[#2a64a3] rounded-md text-[white]"
                             onClick={() => { handleClick(idx) }}
                         >
                             {itx}

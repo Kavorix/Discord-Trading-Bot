@@ -42,7 +42,7 @@ const CheckBoxComponent = ({ checkboxId, setIsCheck }: CheckBoxComponentType) =>
                     onChange={handleChange}
                     className="w-[20px]"
                 />
-                <p  className="ml-2 text-[white]">{checkboxList[checkboxId]}</p>
+                <p className="ml-2 text-[white]">{checkboxList[checkboxId]}</p>
             </div>
 
             <div className="flex flex-col pl-10 sm:flex-row sm:justify-between sm:items-center mt-3">
@@ -52,7 +52,7 @@ const CheckBoxComponent = ({ checkboxId, setIsCheck }: CheckBoxComponentType) =>
                     className="w-full text-[white] bg-transparent border rounded-md"
                     value={inputValue}
                     onChange={(e: any) => {
-                        setInputValue(e.target.value)
+                        setInputValue(Number(e.target.value))
                         let newdiscordChannelCap = discordChannelCap
                         newdiscordChannelCap[sideBarNumber - 3][checkboxId] = Number(e.target.value)
                         setDiscordChannelCap(newdiscordChannelCap)
