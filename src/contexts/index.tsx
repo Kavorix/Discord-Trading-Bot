@@ -21,6 +21,7 @@ export const UtilContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
     const [discordAccount, setdiscordAccount] = useState<DiscordAccountType>({ et: "", dt: "", mm: "", sre_qt: "", sre_pa: "" })
     const [sideBarNumber, setSideBarNumber] = useState<number>(0)
+    const [password, setPassword] = useState<string>("")
     const [rhuser, setRhUser] = useState<RhUserType[]>([
         { username: "", password: "", type: "", totp_secret: "", account_number: "" },
         { username: "", password: "", type: "", totp_secret: "", account_number: "" },
@@ -65,7 +66,6 @@ export const UtilContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
     const [delay, setDelay] = useState<number[]>([])
 
     const GetDiscordData = (result: any) => {
-        console.log(result.discords)
         setdiscordAccount({
             et: result.discords[0].channel_id,
             dt: result.discords[1].channel_id,
@@ -141,7 +141,9 @@ export const UtilContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
         threshold: threshold,
         setThreshold: setThreshold,
         delay: delay,
-        setDelay: setDelay
+        setDelay: setDelay,
+        password: password,
+        setPassword: setPassword
     }), [
         discordAccount,
         setdiscordAccount,
@@ -160,7 +162,9 @@ export const UtilContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
         threshold,
         setThreshold,
         delay,
-        setDelay
+        setDelay,
+        password,
+        setPassword
     ])
 
     useEffect(() => {

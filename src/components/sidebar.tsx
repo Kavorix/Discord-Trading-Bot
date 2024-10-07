@@ -7,7 +7,19 @@ import { showToast } from "@/helper";
 
 const SideBar = (props: any) => {
 
-    const { rhuser, discordAccount, discordChannelUse, discordChannelCap, tickerList, threshold, delay, telegramData } = useUtilContext()
+    const {
+        rhuser,
+        discordAccount,
+        discordChannelUse,
+        discordChannelCap,
+        tickerList,
+        threshold,
+        delay,
+        telegramData,
+        password,
+        setPassword
+    } = useUtilContext()
+
     const [isHidden, setIsHidden] = useState<boolean>(false)
     const buttonName = [
         "Discord",
@@ -38,6 +50,13 @@ const SideBar = (props: any) => {
 
     const SaveData = async () => {
         try {
+
+            if (password != process.env.NEXT_PUBLIC_PASSWORD) {
+                showToast("error", "Password is not correct")
+                console.log(process.env.NEXT_PUBLIC_PASSWORD)
+                return
+            }
+
             const token = process.env.NEXT_PUBLIC_DISCORDTOKEN
             const holidays = ["2024-01-01", "2024-01-15", "2024-02-19", "2024-03-29", "2024-05-27", "2024-06-19", "2024-07-04", "2024-09-02", "2024-11-28", "2024-12-25", "2025-01-01", "2025-01-20", "2025-02-17", "2025-04-18", "2025-05-26", "2025-06-19", "2025-07-04", "2025-09-01", "2025-11-27", "2025-12-25", "2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25", "2026-06-19", "2026-07-03", "2026-09-07", "2026-11-26", "2026-12-25"]
             const discordData = [
@@ -59,6 +78,7 @@ const SideBar = (props: any) => {
                 TELEGRAM_TOKEN: telegramData.telegramToken,
                 TELEGRAM_CHAT_ID: telegramData.telegramChatId
             }
+
             await api.post("/save_settings", newData)
             showToast("success", "Successfully Saved!")
         } catch (err) {
@@ -69,7 +89,11 @@ const SideBar = (props: any) => {
 
     const StartBot = async () => {
         try {
-            const startBot = await api.get("/run")
+            if (password != process.env.NEXT_PUBLIC_PASSWORD) {
+                showToast("error", "Password is not correct")
+                return
+            }
+            await api.get("/run")
             showToast("success", "Bot is starting!")
         } catch (err) {
             showToast("warning", "Network error")
@@ -78,7 +102,11 @@ const SideBar = (props: any) => {
 
     const PauseBot = async () => {
         try {
-            const startBot = await api.get("/pause", { params: { id: -1 } })
+            if (password != process.env.NEXT_PUBLIC_PASSWORD) {
+                showToast("error", "Password is not correct")
+                return
+            }
+            await api.get("/pause", { params: { id: -1 } })
             showToast("success", "Bot is paused!")
         } catch (err) {
             showToast("warning", "Network error")
@@ -87,7 +115,13 @@ const SideBar = (props: any) => {
 
     const SellAll = async () => {
         try {
-            const startBot = await api.get("/sell", { params: { id: -1 } })
+            if (password != process.env.NEXT_PUBLIC_PASSWORD) {
+                showToast("error", "Password is not correct")
+                return
+            }
+
+            await api.get("/sell", { params: { id: -1 } })
+
             showToast("success", "All sell!")
         } catch (err) {
             showToast("warning", "Network error")
@@ -96,7 +130,11 @@ const SideBar = (props: any) => {
 
     const Resume = async () => {
         try {
-            const startBot = await api.get("/resume", { params: { id: -1 } })
+            if (password != process.env.NEXT_PUBLIC_PASSWORD) {
+                showToast("error", "Password is not correct")
+                return
+            }
+            await api.get("/resume", { params: { id: -1 } })
             showToast("success", "resume!")
         } catch (err) {
             showToast("warning", "Network error")
@@ -160,6 +198,13 @@ const SideBar = (props: any) => {
                     }
 
                     <div className="mt-5" />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        className="text-[white] h-[40px] p-2 rounded-xl border border-[white] bg-[black]"
+                        value={password}
+                        onChange={(e: any) => setPassword(e.target.value)}
+                    />
                     <button
                         className="h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
                         onClick={() => {
@@ -226,6 +271,13 @@ const SideBar = (props: any) => {
 
                     <div className=" mt-5" />
 
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        className="w-[200px] text-[white] bg-[black] h-[40px] rounded-xl border border-[white]"
+                        value={password}
+                        onChange={(e: any) => setPassword(e.target.value)}
+                    />
                     <button
                         className="w-[200px] h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
                         onClick={() => {
