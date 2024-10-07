@@ -202,11 +202,15 @@ const BotSetting = () => {
         "sell"
     ]
 
-    const { sideBarNumber } = useUtilContext()
+    const { sideBarNumber, password } = useUtilContext()
 
     const handleClick = async (idx: number) => {
         try {
             const id = sideBarNumber - 3
+            if (password != process.env.NEXT_PUBLIC_PASSWORD) {
+                showToast("error", "Password is not correct")
+                return
+            }
             await api.get(`/${endpoint[idx]}`, { params: { id: id } })
             showToast("success", `Bot is successfully ${endpoint[idx]}d`)
         } catch (err) {
@@ -228,7 +232,7 @@ const BotSetting = () => {
                     ))
                 }
             </div>
-            <div className="flex flex-wrap gap-10">
+            <div className="flex flex-wrap gap-10 justify-center">
                 <BuySettings />
                 <TickerList />
                 <DiscordLIst />

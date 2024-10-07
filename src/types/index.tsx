@@ -47,6 +47,8 @@ export type UtilContextType = {
     setTickerList: (id: TickerListType) => void;
     threshold: number[];
     setThreshold: (id: number[]) => void;
-    delay:number[];
+    delay: number[];
     setDelay: (id: number[]) => void;
+    password: string;
+    setPassword: (id: string) => void;
 }
