@@ -69,7 +69,7 @@ const Modal = () => {
             <div className="w-[80%] flex justify-between items-center mt-5 gap-5">
                 <button
                     className="w-[150px] h-[40px] border rounded-md hover:bg-[#2b2b2b]"
-                    onClick={() => handleNewPassword}
+                    onClick={() => handleNewPassword()}
                 >
                     Confirm
                 </button>
