@@ -31,7 +31,7 @@ const Modal = () => {
         }
 
         try {
-            const isCurrentPasswordCorrect: any = await api.post("/password",
+            const isCurrentPasswordCorrect: any = await api.post("/setpassword",
                 {
                     currentPassword: currentPassword,
                     newPassword: newPassword
