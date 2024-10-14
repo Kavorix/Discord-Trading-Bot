@@ -41,7 +41,7 @@ const Modal = () => {
                 showToast("success", "Success new Password")
             else showToast("warning", "CurrentPassword is not correct!")
         } catch (err) {
-
+            showToast("warning", "Network Error")
         }
 
 
