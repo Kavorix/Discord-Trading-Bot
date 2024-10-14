@@ -64,64 +64,7 @@ export const UtilContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
     const [threshold, setThreshold] = useState<number[]>([])
     const [delay, setDelay] = useState<number[]>([])
-
-    const GetDiscordData = (result: any) => {
-        setdiscordAccount({
-            et: result.discords[0].channel_id,
-            dt: result.discords[1].channel_id,
-            mm: result.discords[2].channel_id,
-            sre_pa: result.discords[3].channel_id,
-            sre_qt: result.discords[4].channel_id,
-        })
-    }
-
-    const GetRhUserData = (result: any) => {
-        setRhUser(result.accounts)
-    }
-
-    const GetTelegramData = (result: any) => {
-        setTelegramData({
-            telegramChatId: result.TELEGRAM_CHAT_ID,
-            telegramToken: result.TELEGRAM_TOKEN
-        })
-    }
-
-    const GetThresHold = (result: any) => {
-        setThreshold(result.threshold)
-    }
-
-    const GetDelay = (result: any) => {
-        setDelay(result.delay)
-    }
-
-    const GetTicket = (result: any) => {
-        setTickerList(result.ticker_exclusion_list)
-    }
-
-    const GetDiscordCap = (result: any) => {
-        setDiscordChannelCap(result.cap_discord_channel)
-    }
-
-    const GetDiscordUse = (result: any) => {
-        setDiscordChannelUse(result.discord_channel_use)
-    }
-
-    const init = async () => {
-        try {
-            const data = await api.get("/get_settings")
-            const result = data.data
-            if (result == undefined) return
-            GetDiscordData(result)
-            GetRhUserData(result)
-            GetTelegramData(result)
-            GetThresHold(result)
-            GetDelay(result)
-            GetTicket(result)
-            GetDiscordCap(result)
-            GetDiscordUse(result)
-        } catch (err) {
-        }
-    }
+    const [isModal, setIsModal] = useState<boolean>(false)
 
     const value = useMemo(() => ({
         discordAccount: discordAccount,
@@ -143,7 +86,9 @@ export const UtilContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
         delay: delay,
         setDelay: setDelay,
         password: password,
-        setPassword: setPassword
+        setPassword: setPassword,
+        isModal: isModal,
+        setIsModal: setIsModal
     }), [
         discordAccount,
         setdiscordAccount,
@@ -164,12 +109,10 @@ export const UtilContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
         delay,
         setDelay,
         password,
-        setPassword
+        setPassword,
+        isModal,
+        setIsModal
     ])
-
-    useEffect(() => {
-        init();
-    }, [])
 
     return (
         <UtilContext.Provider value={value}>

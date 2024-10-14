@@ -206,12 +206,14 @@ const BotSetting = () => {
 
     const handleClick = async (idx: number) => {
         try {
+
+
             const id = sideBarNumber - 3
-            if (password != process.env.NEXT_PUBLIC_PASSWORD) {
-                showToast("error", "Password is not correct")
+            const result = await api.post(`/${endpoint[idx]}`, { id: id, password: password })
+            if (result.data == false) {
+                showToast("warning", "Password is not correct")
                 return
             }
-            await api.get(`/${endpoint[idx]}`, { params: { id: id } })
             showToast("success", `Bot is successfully ${endpoint[idx]}d`)
         } catch (err) {
             showToast("warning", "Network error")
