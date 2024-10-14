@@ -64,6 +64,7 @@ export const UtilContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
     const [threshold, setThreshold] = useState<number[]>([])
     const [delay, setDelay] = useState<number[]>([])
+    const [isModal, setIsModal] = useState<boolean>(false)
 
     const value = useMemo(() => ({
         discordAccount: discordAccount,
@@ -85,7 +86,9 @@ export const UtilContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
         delay: delay,
         setDelay: setDelay,
         password: password,
-        setPassword: setPassword
+        setPassword: setPassword,
+        isModal: isModal,
+        setIsModal: setIsModal
     }), [
         discordAccount,
         setdiscordAccount,
@@ -106,7 +109,9 @@ export const UtilContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
         delay,
         setDelay,
         password,
-        setPassword
+        setPassword,
+        isModal,
+        setIsModal
     ])
 
     return (

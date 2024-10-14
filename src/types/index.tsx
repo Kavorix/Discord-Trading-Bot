@@ -51,4 +51,6 @@ export type UtilContextType = {
     setDelay: (id: number[]) => void;
     password: string;
     setPassword: (id: string) => void;
+    isModal: boolean;
+    setIsModal: (id: boolean) => void;
 }

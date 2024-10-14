@@ -25,7 +25,9 @@ const SideBar = (props: any) => {
         setDelay,
         setTickerList,
         setDiscordChannelCap,
-        setDiscordChannelUse
+        setDiscordChannelUse,
+        setIsModal,
+        isModal
 
     } = useUtilContext()
 
@@ -213,7 +215,6 @@ const SideBar = (props: any) => {
                     setIsHidden(!isHidden)
                 }}
             >
-                {/* hiddenBtn */}
                 <Image
                     src="/svg/hamburger-sidebar-svgrepo-com.svg"
                     alt="back"
@@ -260,14 +261,24 @@ const SideBar = (props: any) => {
                     }
 
                     <div className="mt-5" />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        className="text-[white] h-[40px] p-2 rounded-xl border border-[white] bg-[black]"
-                        value={password}
-                        onChange={(e: any) => setPassword(e.target.value)}
-                    />
+                    <div className="flex w-[100%] gap-1">
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            className="w-full text-[white] h-[40px] p-2 rounded-xl border border-[white] bg-[black]"
+                            value={password}
+                            onChange={(e: any) => setPassword(e.target.value)}
+                        />
+                        <Image
+                            className="cursor-pointer"
+                            width={25}
+                            height={25}
+                            alt="setting"
+                            src={"/svg/setting.svg"}
+                            onClick={() => setIsModal(!isModal)}
+                        />
 
+                    </div>
                     <button
                         className="h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
                         onClick={() => {
@@ -343,15 +354,26 @@ const SideBar = (props: any) => {
 
                     <div className=" mt-5" />
 
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        className="w-[200px] text-[white] bg-[black] h-[40px] rounded-xl border border-[white]"
-                        value={password}
-                        onChange={(e: any) => setPassword(e.target.value)}
-                    />
+                    <div className="flex w-[100%] gap-1">
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            className="w-full text-[white] h-[40px] p-2 rounded-xl border border-[white] bg-[black]"
+                            value={password}
+                            onChange={(e: any) => setPassword(e.target.value)}
+                        />
+                        <Image
+                            className="cursor-pointer"
+                            width={25}
+                            height={25}
+                            alt="setting"
+                            src={"/svg/setting.svg"}
+                            onClick={() => setIsModal(!isModal)}
+                        />
+                    </div>
+
                     <button
-                        className="w-[200px] h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
+                        className="w-[100%] h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
                         onClick={() => {
                             LoadData()
                         }}
@@ -359,7 +381,7 @@ const SideBar = (props: any) => {
                         Load Data
                     </button>
                     <button
-                        className="w-[200px] h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
+                        className="w-[100%] h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
                         onClick={() => {
                             SaveData()
                         }}
@@ -368,7 +390,7 @@ const SideBar = (props: any) => {
                     </button>
 
                     <button
-                        className="w-[200px] h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
+                        className="w-[100%] h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
                         onClick={() => {
                             PauseBot()
                         }}
@@ -377,7 +399,7 @@ const SideBar = (props: any) => {
                     </button>
 
                     <button
-                        className="w-[200px] h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
+                        className="w-[100%] h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
                         onClick={() => {
                             Resume()
                         }}
@@ -386,7 +408,7 @@ const SideBar = (props: any) => {
                     </button>
 
                     <button
-                        className="w-[200px] h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
+                        className="w-[100%] h-[40px] p-2 rounded-xl bg-[#161616] hover:bg-[#6e767c] text-[white]"
                         onClick={() => {
                             SellAll()
                         }}
